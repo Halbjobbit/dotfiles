@@ -7,6 +7,8 @@ call plug#begin(stdpath('data') . '/plugged')
 		Plug 'jiangmiao/auto-pairs'
 		Plug 'Yggdroot/indentLine'
 		Plug 'rust-lang/rust.vim'
+		Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+		Plug 'akinsho/bufferline.nvim'
 call plug#end()
 
 " Visual
@@ -28,3 +30,25 @@ set mouse=a
 set clipboard=unnamed
 
 colorscheme srcery
+set termguicolors
+
+lua << EOF
+require("bufferline").setup{
+	options={
+		indicator_icon = '▎',
+		modified_icon = '●',
+		buffer_close_icon = '',
+		close_icon = '',
+		left_trunc_marker = '',
+		right_trunc_marker = '',
+		offsets = {
+			{
+				filetype = "NERDTree",
+				text = "File Explorer",
+				highlight = "Directory",
+				text_align = "left"
+			}
+		}
+	}
+}
+EOF
