@@ -23,3 +23,4 @@ colorscheme srcery
 set termguicolors
 
 nmap <silent> <C-d> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
