@@ -19,7 +19,6 @@ set hlsearch
 set incsearch
 set mouse=a
 set clipboard=unnamed
-au BufRead,BufNewFile *.cm set filetype=cm
 au BufRead,BufNewFile *.cm set syntax=cm
 
 colorscheme srcery
