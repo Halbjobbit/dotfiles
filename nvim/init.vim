@@ -4,6 +4,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+filetype plugin on
 set showmatch
 set number
 set cursorline
@@ -18,6 +19,8 @@ set hlsearch
 set incsearch
 set mouse=a
 set clipboard=unnamed
+au BufRead,BufNewFile *.cm set filetype=cm
+au BufRead,BufNewFile *.cm set syntax=cm
 
 colorscheme srcery
 set termguicolors
