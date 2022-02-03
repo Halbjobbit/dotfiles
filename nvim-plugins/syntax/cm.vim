@@ -9,7 +9,7 @@ endif
 
 hi link Text String 
 hi link SyntaxElem Operator 
-syn match Text "\v[a-zA-Z]+"
+syn match Text "\v[a-zA-ZäöüÄÖÜ]+\-*[a-zA-ZäöüÄÖÜ]"
 syn match SyntaxElem "\v\|"
 syn match SyntaxElem "\v\*"
 syn match SyntaxElem "\v\{"
