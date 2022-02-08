@@ -25,4 +25,5 @@ colorscheme srcery
 set termguicolors
 
 nmap <silent> <C-d> :NERDTreeToggle<CR>
+nmap <silent> <C-ä> :NERDTreeRefreshRoot<CR>
 let NERDTreeShowHidden=1
