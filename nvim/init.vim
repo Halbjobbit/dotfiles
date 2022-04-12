@@ -33,7 +33,6 @@ set termguicolors
 nmap <silent> <C-d> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
-<<<<<<< HEAD
 " Move lines up or down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -42,18 +41,11 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Set completeopt to have a better completion experience
-" :help completeopt
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect
-=======
+
 "Config from coc-docs
 set hidden
 set nobackup
 set nowritebackup
->>>>>>> ffdeaab (Switch to coc.nvim)
 
 set cmdheight=2
 set updatetime=300
