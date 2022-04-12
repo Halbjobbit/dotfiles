@@ -6,23 +6,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'srcery-colors/srcery-vim'
 
-	" Rust tools
-
-	" Collection of common configurations for the Nvim LSP client
-	Plug 'neovim/nvim-lspconfig'
-	" Completion framework
-	Plug 'hrsh7th/nvim-cmp'
-	" LSP completion source for nvim-cmp
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	" Snippet completion source for nvim-cmp
-	Plug 'hrsh7th/cmp-vsnip'
-	" Other usefull completion sources
-	Plug 'hrsh7th/cmp-path'
-	Plug 'hrsh7th/cmp-buffer'
-	" To enable more of the features of rust-analyzer, such as inlay hints and more!
-	Plug 'simrat39/rust-tools.nvim'
-	" Snippet engine
-	Plug 'hrsh7th/vim-vsnip'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype plugin on
@@ -41,6 +25,7 @@ set incsearch
 set mouse=a
 set clipboard=unnamed
 au BufRead,BufNewFile *.cm set syntax=cm
+set encoding=utf-8
 
 colorscheme srcery
 set termguicolors
@@ -48,6 +33,7 @@ set termguicolors
 nmap <silent> <C-d> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
+<<<<<<< HEAD
 " Move lines up or down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -62,111 +48,47 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " noinsert: Do not insert text until a selection is made
 " noselect: Do not select, force user to select one from the menu
 set completeopt=menuone,noinsert,noselect
+=======
+"Config from coc-docs
+set hidden
+set nobackup
+set nowritebackup
+>>>>>>> ffdeaab (Switch to coc.nvim)
 
-" Avoid showing extra messages when using completion
-set shortmess+=c
-
-" Configure LSP through rust-tools.nvim plugin.
-" rust-tools will configure and enable certain LSP features for us.
-" See https://github.com/simrat39/rust-tools.nvim#configuration
-lua <<EOF
-local nvim_lsp = require'lspconfig'
-
-local opts = {
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
-    },
-}
-
-require('rust-tools').setup(opts)
-EOF
-
-" Setup Completion
-" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-lua <<EOF
-local cmp = require'cmp'
-cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
-
-  -- Installed sources
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  },
-})
-EOF
-
-" Code navigation shortcuts
-" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
+set cmdheight=2
 set updatetime=300
-" Show diagnostic popup on cursor hold
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+set shortmess+=c
+set signcolumn=number
 
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
+let g:coc_global_extensions = ['coc-json', 'coc-pairs', 'coc-tsserver', 'coc-sh', 'coc-rust-analyzer']
 
-" have a fixed column for the diagnostics to appear in
-" this removes the jitter when warnings/errors flow in
-set signcolumn=yes
+" Keymap
+" K:				Docs
+" f:				Format document
+" Ctrl + Space:		Show completions
+" Tab / Shift + Tab Next / Previous
+" Ctrl + A			Diagnostics	
 
-nnoremap <silent> <C-i> <cmd>lua vim.lsp.buf.formatting()<CR>
+" formatting
+nmap <silent>f <Plug>(coc-format)
+
+" documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" menu navigation 
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent><nowait> <C-a>  :<C-u>CocList diagnostics<cr>
