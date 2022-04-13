@@ -4,7 +4,10 @@ call plug#begin(stdpath('data') . '/plugged')
 
 	" Theming
 	Plug 'ryanoasis/vim-devicons'
+	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'srcery-colors/srcery-vim'
+
+	Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -41,6 +44,24 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+" Bufferline
+lua << EOF
+require("bufferline").setup{
+	options = {
+		offsets = {
+			{
+			    filetype = "nerdtree",
+			    text = "File Explorer",
+			    highlight = "Directory",
+			    text_align = "left"
+			}
+		}
+	}
+}
+EOF
+nnoremap <silent><C-]> :BufferLineCycleNext<CR>
+nnoremap <silent><C-[> :BufferLineCyclePrev<CR>
+nnoremap <silent><C-A-w> :bdelete<CR>
 
 "Config from coc-docs
 set hidden
