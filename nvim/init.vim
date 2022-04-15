@@ -10,6 +10,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'moll/vim-bbye'
 call plug#end()
 
 filetype plugin on
@@ -61,7 +62,7 @@ require("bufferline").setup{
 EOF
 nnoremap <silent><C-]> :BufferLineCycleNext<CR>
 nnoremap <silent><C-[> :BufferLineCyclePrev<CR>
-nnoremap <silent><C-A-w> :bdelete<CR>
+nnoremap <silent><C-A-w> :Bdelete<CR>
 
 "Config from coc-docs
 set hidden
@@ -73,7 +74,7 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=number
 
-let g:coc_global_extensions = ['coc-json', 'coc-pairs', 'coc-tsserver', 'coc-sh', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-json', 'coc-pairs', 'coc-tsserver', 'coc-sh', 'coc-rust-analyzer', 'coc-vetur', 'coc-html', 'coc-css']
 
 " Keymap
 " K:				Docs
