@@ -76,6 +76,9 @@ set signcolumn=number
 
 let g:coc_global_extensions = ['coc-json', 'coc-pairs', 'coc-tsserver', 'coc-sh', 'coc-rust-analyzer', 'coc-vetur', 'coc-html', 'coc-css']
 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Keymap
 " K:				Docs
 " f:				Format document
