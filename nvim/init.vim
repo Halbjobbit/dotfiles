@@ -7,10 +7,14 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'srcery-colors/srcery-vim'
 
+	" Visual details
+	Plug 'yggdroot/indentLine'	
+
+	" Bufferline
 	Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+	Plug 'moll/vim-bbye'
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'moll/vim-bbye'
 call plug#end()
 
 filetype plugin on
@@ -48,7 +52,7 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " Bufferline
 lua << EOF
 require("bufferline").setup{
-	options = {
+    options = {
 		offsets = {
 			{
 			    filetype = "nerdtree",
@@ -57,7 +61,7 @@ require("bufferline").setup{
 			    text_align = "left"
 			}
 		}
-	}
+    }
 }
 EOF
 nnoremap <silent><C-]> :BufferLineCycleNext<CR>
