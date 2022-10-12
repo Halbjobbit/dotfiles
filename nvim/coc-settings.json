@@ -32,7 +32,9 @@
 			],
 			"filetypes": [
 				"haskell",
-				"lhaskell"
+				"lhaskell",
+				"lhs",
+				"hs"
 			]
 		}
 	}

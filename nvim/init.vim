@@ -113,3 +113,5 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent><nowait> <C-a>  :<C-u>CocList diagnostics<cr>
+
+let g:indentLine_setConceal = 0
