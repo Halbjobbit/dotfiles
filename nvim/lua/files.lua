@@ -3,5 +3,5 @@ vim.g.loaded_netrwPlugin = 1
 
 require("nvim-tree").setup()
 local api = require("nvim-tree.api")
-vim.keymap.set("n", "<C-d>", api.tree.toggle, { silent = true })
+vim.keymap.set("n", "<C-d>", api.tree.focus, { silent = true })
 

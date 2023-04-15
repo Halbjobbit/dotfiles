@@ -5,3 +5,4 @@ o.syntax = true
 o.termguicolors = true
 
 vim.cmd('colorscheme srcery')
+
